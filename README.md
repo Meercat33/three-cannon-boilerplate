@@ -3,7 +3,7 @@ A simple little boilerplate for three.js and cannon-es using node and rollup
 
 ## Initialization
 + In your terminal, run `npm init -y` to create the `package.json` file
-+ In `package.json`, add `"start": "rollup -c \"rollup_config\" && serve"` under scripts.
++ In `package.json`, add `"start": "rollup -c \"rollup_config.js\" && serve"` under scripts.
 + Note: the bin locations may be different for Rollup and Serve so change that command to suit your needs.
 
 ## Dependencies
