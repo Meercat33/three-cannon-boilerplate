@@ -4,12 +4,21 @@ import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 //import {PointerLockControls} from 'three/examples/jsm/controls/PointerLockControls.js'; <- Optional
 
 let scene, renderer, camera, world;
+const timeStep = 1 / 60;
 const aspectRatio /*bozo*/ = window.innerWidth / window.innerHeight;
 
 
 function main() {
-    initThree();
     initCannon();
+    initThree();
+    const material = new THREE.MeshNormalMaterial();
+
+    const boxGeo = new THREE.BoxGeometry(7, 7, 7);
+    const boxMsh = new THREE.Mesh(boxGeo, material);
+    scene.add(boxMsh);
+
+    const light = new THREE.AmbientLight(0xffffff, 0.7);
+    scene.add(light);
 }
 
 function initThree() {
@@ -23,15 +32,6 @@ function initThree() {
     camera.position.set(0, 10, 30);
     camera.lookAt(0, 0, 0);
 
-    const material = new THREE.MeshNormalMaterial();
-
-    const boxGeo = new THREE.BoxGeometry(7, 7, 7);
-    const boxMsh = new THREE.Mesh(boxGeo, material);
-    scene.add(boxMsh);
-
-    const light = new THREE.AmbientLight(0xffffff, 0.7);
-    scene.add(light);
-
     const controls = new OrbitControls(camera, renderer.domElement);
 
     animate();
@@ -40,15 +40,15 @@ function initThree() {
 }
 
 function initCannon() {
-    world = new CANNON.World();
-    world.gravity.set(0, -10, 0);
-    world.broadphase = new CANNON.NaiveBroadphase();
-    world.solver.iterations = 40;
+    world = new CANNON.World({
+        gravity: new CANNON.Vec3(0, -9.81, 0)
+    });
 }
 
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
+    world.step(timeStep);
 }
 
 function onWindowResize() {
