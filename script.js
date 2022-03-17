@@ -23,7 +23,7 @@ function initThree() {
     camera.position.set(0, 10, 30);
     camera.lookAt(0, 0, 0);
 
-    const material = new THREE.MeshLambertMaterial({color:0x808080});
+    const material = new THREE.MeshNormalMaterial();
 
     const boxGeo = new THREE.BoxGeometry(7, 7, 7);
     const boxMsh = new THREE.Mesh(boxGeo, material);
