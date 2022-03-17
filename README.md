@@ -10,4 +10,4 @@ A simple little boilerplate for three.js and cannon-es using node and rollup
 + run `npm i three rollup rollup-plugin-terser @rollup/plugin-node-resolve cannon-es` in your terminal
 
 ## Finally...
-*Run `npm start` to serve the webpage locally. (default- `http://localhost:3000`)
+*Run `npm start` to serve the webpage locally. (default- `http://localhost:3000`)*
